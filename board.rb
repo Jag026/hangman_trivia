@@ -16,16 +16,23 @@ class Board
         system("clear")
     end
 
+    def game_over
+        sleep(1)
+        system("clear")
+        puts "Game Over"
+    end
+
     def render_display
-        puts "Moves Remaining: " + @moves_remaining.to_s
+        puts "Misses Remaining: " + @moves_remaining.to_s
     end
 
     def play
         self.intro
+        render_display
     end
 
 end
 #
-#new_game = Board.new
-#new_game.play
+new_game = Board.new
+new_game.play
 
