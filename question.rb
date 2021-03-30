@@ -2,7 +2,6 @@
 require "json"
 file = File.open "./trivia-questions.json"
 data = JSON.load file
-# puts data['results'][rand(30)]["question"]
 
 def set_question(data)
     question_pack = data['results'][rand(50)]
@@ -44,4 +43,3 @@ def guess_q(arr, correct_answer_idx)
 end
 
 
-p set_question(data)

@@ -1,4 +1,9 @@
 require_relative 'player.rb'
+require_relative 'question.rb'
+require "json"
+file = File.open "./trivia-questions.json"
+$data = JSON.load file
+
 
 class Board
     attr_accessor :player
@@ -24,6 +29,21 @@ class Board
         system("clear") 
         @player = Player.new(player_name)
         @player.set_player_display_arr
+      while @moves_remaining > 0 && @questions_remaining > 0
+        guess = set_question($data)
+        if guess == false
+            system "clear"
+            @moves_remaining -= 1
+            render_display
+            puts "Incorrect Answer"
+        else
+            system "clear"
+            @questions_remaining -= 1
+            render_display
+            puts "Correct Answer"
+        end
+     end
+     game_over
     end
 
     def game_over
